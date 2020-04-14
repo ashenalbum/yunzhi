@@ -25,9 +25,11 @@ export default {
 .fs_32{font-size:0.32rem;}
 .fs_34{font-size:0.34rem;}
 .fs_36{font-size:0.36rem;}
+.fs_40{font-size:0.40rem;}
 .fs_44{font-size:0.44rem;}
 .fs_50{font-size:0.50rem;}
 .fs_100{font-size:1rem;}
+.fs_124{font-size:1.24rem;}
 .mt-10{margin-top:0.1rem;}
 .mt-20{margin-top:0.2rem;}
 .mt-30{margin-top:0.3rem;}
@@ -35,13 +37,15 @@ export default {
 .mt-40{margin-top:0.4rem;}
 .mt-46{margin-top:0.46rem;}
 .mt-50{margin-top:0.50rem;}
+.mt-60{margin-top:0.60rem;}
 .ml-20{margin-left:0.2rem;}
-.pl-10{padding-left:0.1rem;padding-right:0.1rem;}
-.pl-20{padding-left:0.2rem;padding-right:0.2rem;}
-.pl-40{padding-left:0.4rem;padding-right:0.4rem;}
-.pl-50{padding-left:0.5rem;padding-right:0.5rem;}
+.pl-10{padding-left:0.1rem;}
+.pl-20{padding-left:0.2rem;}
+.pl-40{padding-left:0.4rem;}
+.pl-50{padding-left:0.5rem;}
 
 .c_style{color:#6F6FFF;}
+.c_o{color:#FF9C00;}
 .c_red{color:#FF0000;}
 .c_red1{color:#F32323;}
 .c_ashen{color:#9FA9C7;}
@@ -75,4 +79,9 @@ export default {
 .one-hide{display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:1; overflow:hidden; text-overflow:ellipsis;}
 .two-hide{display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; text-overflow:ellipsis;}
 
+.loginform .input .van-field__control{color:#ffffff;}
+.loginform .input .van-field__control::-webkit-input-placeholder{color: #bbbbbb;}
+.loginform .submit-btn .van-button__text{color:#6F6FFF; font-size:0.3rem;}
+
+.nav-bar{width:100%;}
 </style>
