@@ -28,6 +28,7 @@ export default {
 .fs_40{font-size:0.40rem;}
 .fs_44{font-size:0.44rem;}
 .fs_50{font-size:0.50rem;}
+.fs_80{font-size:0.80rem;}
 .fs_100{font-size:1rem;}
 .fs_124{font-size:1.24rem;}
 .mt-10{margin-top:0.1rem;}
@@ -52,8 +53,10 @@ export default {
 .c_blue{color:#1989fa;}
 .c_33{color:#333333;}
 .c_66{color:#666666;}
+.c_77{color:#777777;}
 .c_88{color:#888888;}
 .c_99{color:#999999;}
+.c_cc{color:#cccccc;}
 .c_ff{color:#FFFFFF;}
 .b{font-weight:bold;}
 .t-indent{text-indent:2em;}

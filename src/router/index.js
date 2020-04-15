@@ -7,7 +7,7 @@ Vue.use(Router);
 export default new Router({
     // mode: 'history',
     routes: [{
-        path: '/', redirect: '/all_path'
+        path: '/', redirect: '/index'
     },{
         path: '/index',
         name: 'index',
@@ -68,5 +68,15 @@ export default new Router({
         name: 'order_log',
         meta: {title: "订单记录"},
         component: (resolve) =>require(['@/page/orderLog.vue'],resolve)
+    },{
+        path: '/order_detail',
+        name: 'order_detail',
+        meta: {title: "订单详情"},
+        component: (resolve) =>require(['@/page/orderDetail.vue'],resolve)
+    },{
+        path: '/order_pay',
+        name: 'order_pay',
+        meta: {title: "支付订单"},
+        component: (resolve) =>require(['@/page/orderPay.vue'],resolve)
     }]
 })

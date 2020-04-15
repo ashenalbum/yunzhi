@@ -2,8 +2,8 @@
     <div class="cont df df-c ai-c">
         <div class="topbox shadow">
             <div class="iconbox df df-c ai-c">
-                <img src="~@/assets/test.jpg" class="icon" @click="toMyInfo" />
-                <span class="username fs_30 c_33" @click="toMyInfo">发疯了@痘痘</span>
+                <img :src="info.headpath" class="icon shadow" @click="toMyInfo" />
+                <span class="username fs_30 c_33" @click="toMyInfo">{{info.username}}</span>
             </div>
             <div class="cellbox df df-r">
                 <div class="cell f1 df df-r ai-c just-c-ct fs_28 c_33" @click="toMyProperty">
@@ -46,13 +46,25 @@
     </div>
 </template>
 <script>
+import axios from "../utils/axios";
 export default {
     data(){
         return {
-
+            info: {}
         }
     },
+    created(){
+        this.getData();
+    },
     methods: {
+        getData(){
+            axios({
+                url: "/goods/Apiyunzhi/getUserInfo"
+            }).then((data)=>{
+                if(data.err!=0){return}
+                this.info = data.content;
+            })
+        },
         toMyProperty(){this.$router.push("/my_property");},
         toMyFraction(){this.$router.push("/my_fraction");},
         toMyInfo(){this.$router.push("/my_info");},

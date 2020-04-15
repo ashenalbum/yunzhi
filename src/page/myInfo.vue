@@ -5,7 +5,7 @@
             <template #right><span class="c_33">保存</span></template>
         </van-nav-bar>
         <van-uploader :after-read="afterRead" :preview-image="false">
-            <img src="~@/assets/test.jpg" class="icon" />
+            <img :src="formData.headpath" class="icon shadow" />
         </van-uploader>
         <div class="formbox">
             <van-field v-model="formData.username" label="用户名" placeholder="请输入用户名" input-align="right" :borde="false" class="input" />
@@ -15,20 +15,46 @@
     </div>
 </template>
 <script>
+import axios from "../utils/axios";
+import {upFile} from "../utils/axios";
+import { Toast } from 'vant';
+
 export default {
     data(){
         return {
-            formData: {
-
-            }
+            formData: {}
         }
     },
+    created(){
+        this.getData();
+    },
     methods: {
+        afterRead(file){
+            let formdata = new FormData();
+            formdata.append("file",file);
+            upFile(formdata).then((res)=>{
+                let data = res.data;
+                if(data.err!=0){Toast("error");return}
+
+            });
+        },
+        getData(){
+            axios({
+                url: "/goods/Apiyunzhi/getUserInfo"
+            }).then((data)=>{
+                if(data.err!=0){return}
+                this.formData = data.content;
+            })
+        },
         save(){
 
-        },
-        afterRead(){
-
+            axios({
+                url: "/goods/Apiyunzhi/setUserInfo",
+                params: {...this.formData}
+            }).then((data)=>{
+                if(data.err!=0){return}
+                Toast("修改成功")
+            })
         },
         back(){this.$router.go(-1);}
     }

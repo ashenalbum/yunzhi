@@ -14,7 +14,7 @@
     </div>
 </template>
 <script>
-import axios from "../utils/axios";
+import axios from "axios";
 import { Toast } from 'vant';
 
 export default {
@@ -25,6 +25,9 @@ export default {
                 password: "",
             }
         }
+    },
+    created(){
+        if(this.$route.query.msg){Toast(this.$route.query.msg);}
     },
     methods: {
         checkForm(){
@@ -37,11 +40,16 @@ export default {
         onSubmit(){
             axios({
                 method: "post",
-                url: "/goods/Apiyunzhi/register",
+                url: "http://cpfx.78wa.com/public/index.php/goods/Apiyunzhi/login",
                 data: this.formData,
-            }).then((data)=>{
+            }).then((res)=>{
+                let data = res.data;
                 if(data.err!=0){return;}
-            })
+                Toast("登录成功");
+                if(data.cowcms_userid){window.localStorage.setItem("cowcms_userid",data.cowcms_userid);}
+                this.$store.commit("setUserId",data.cowcms_userid);
+                this.$router.replace("/index");
+            });
         }
     }
 }

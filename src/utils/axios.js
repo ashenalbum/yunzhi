@@ -1,15 +1,16 @@
 import axios from "axios";
-// import store from "../store/index";
+import store from "../store/index";
 import {Toast} from "vant";
+import router from "../router/index";
 
 // 上传文件
 export const upFile = (formData) => {
     return axios({
         method: "post",
         headers: { "Content-Type": "multipart/form-data" },
-        url: "http://sqyx.78wa.com/public/index.php/activity/Apiactivity/upload",
+        url: "http://cpfx.78wa.com/public/index.php/upload/Uploads/upload",
         data: formData,
-        // params: {...store.state.token}
+        params: {cowcms_userid: store.state.cowcms_userid}
     })
 }
 
@@ -23,7 +24,7 @@ const service = axios.create({
 service.interceptors.request.use(
     (config) => {
         config.params = {
-            // ...store.state.token,
+            cowcms_userid: store.state.cowcms_userid,
             ...config.params
         }
         return config;
@@ -40,10 +41,15 @@ service.interceptors.response.use(
         const data = response.data;
         if(data.err!==0 && data.content){
             Toast(data.content);
+            if(data.err==1 && data.content=="needAgainLogin"){
+                let str = "登录失效，请重新登录";
+                router.push("/login?msg="+str);
+            }
         }
         return data;
     },
     error => {
+        Toast(error.message);
         return Promise.reject(error);
     }
 );

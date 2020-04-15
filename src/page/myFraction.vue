@@ -5,38 +5,50 @@
         </van-nav-bar>
         <div class="top df df-c mt-20 c_ff">
             <div class="fs_30">现有贡献值</div>
-            <div class="f1 df ai-c just-c-ct fs_124">300</div>
+            <div class="f1 df ai-c just-c-ct fs_124">{{num}}</div>
         </div>
         <div class="list mt-40">
             <div class="title df df-r ai-c">
                 <van-icon name="bars" size="0.44rem" color="#FFAB04" />
                 <span class="fs_30 c_33">贡献值明细</span>
             </div>
-            <van-list v-model="loading" :finished="over" finished-text="没有更多数据了" @load="getList" class="mt-20">
+            <van-list v-model="loading" :finished="over" finished-text="没有更多数据了" @load="getData" class="mt-20">
                 <div v-for="(item,index) in logList" :key="index" class="item df df-r ai-c">
                     <div class="c_88 f1">
-                        <div class="fs_30">转账</div>
-                        <div class="mt-10 c_ashen fs_20">2020年4月05号  20:07</div>
+                        <div class="fs_30">{{item.operation_type}}</div>
+                        <div class="mt-10 c_ashen fs_20">{{item.addtime}}</div>
                     </div>
-                    <span class="num c_red1 fs_28">500云指币</span>
+                    <span class="num c_red1 fs_28">{{item.accounts&&item.accounts.point}}贡献值</span>
                 </div>
             </van-list>
         </div>
     </div>
 </template>
 <script>
+import axios from "../utils/axios";
+
 export default {
     data(){
         return {
             loading: false,
             over: false,
-            logList: [1,2,3],
+            num: 0,
+            logList: [],
         }
     },
+    created(){},
     methods: {
-        getList(){
-            this.loading = false;
-            this.over = true;
+        getData(){
+            axios({
+                url: "/goods/Apiyunzhi/myCoin",
+                params: {coin_type:"point"}
+            }).then((data)=>{
+                if(data.err!=0){return}
+                this.num = data.content.accounts.point.balance;
+                this.logList = data.content.list;
+                this.loading = false;
+                this.over = true;
+            })
         },
         back(){this.$router.go(-1);}
     }

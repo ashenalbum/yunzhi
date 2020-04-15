@@ -14,7 +14,7 @@
     </div>
 </template>
 <script>
-import axios from "../utils/axios";
+import axios from "axios";
 import { Toast } from 'vant';
 
 export default {
@@ -44,9 +44,10 @@ export default {
         onSubmit(){
             axios({
                 method: "post",
-                url: "/goods/Apiyunzhi/register",
+                url: "http://cpfx.78wa.com/public/index.php/goods/Apiyunzhi/register",
                 data: this.formData,
-            }).then((data)=>{
+            }).then((res)=>{
+                let data = res.data;
                 if(data.err!=0){return;}
                 Toast("注册成功,请登录");
                 this.$router.replace("/login");
