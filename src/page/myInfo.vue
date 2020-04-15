@@ -4,9 +4,9 @@
             <template #left><van-icon name="arrow-left" color="#333333" class="c_33"/></template>
             <template #right><span class="c_33">保存</span></template>
         </van-nav-bar>
-        <van-uploader :after-read="afterRead" :preview-image="false">
+        <!-- <van-uploader :after-read="afterRead" :preview-image="false"> -->
             <img :src="formData.headpath" class="icon shadow" />
-        </van-uploader>
+        <!-- </van-uploader> -->
         <div class="formbox">
             <van-field v-model="formData.username" label="用户名" placeholder="请输入用户名" input-align="right" :borde="false" class="input" />
             <van-field v-model="formData.mobile" label="手机号" type="number" placeholder="请输入手机号" input-align="right" :borde="false" class="input" />
@@ -16,7 +16,7 @@
 </template>
 <script>
 import axios from "../utils/axios";
-import {upFile} from "../utils/axios";
+// import {upFile} from "../utils/axios";
 import { Toast } from 'vant';
 
 export default {
@@ -29,15 +29,15 @@ export default {
         this.getData();
     },
     methods: {
-        afterRead(file){
-            let formdata = new FormData();
-            formdata.append("file",file);
-            upFile(formdata).then((res)=>{
-                let data = res.data;
-                if(data.err!=0){Toast("error");return}
+        // afterRead(file){
+        //     let formdata = new FormData();
+        //     formdata.append("file",file);
+        //     upFile(formdata).then((res)=>{
+        //         let data = res.data;
+        //         if(data.err!=0){Toast("error");return}
 
-            });
-        },
+        //     });
+        // },
         getData(){
             axios({
                 url: "/goods/Apiyunzhi/getUserInfo"
@@ -47,7 +47,6 @@ export default {
             })
         },
         save(){
-
             axios({
                 url: "/goods/Apiyunzhi/setUserInfo",
                 params: {...this.formData}

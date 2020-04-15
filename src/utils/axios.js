@@ -8,7 +8,7 @@ export const upFile = (formData) => {
     return axios({
         method: "post",
         headers: { "Content-Type": "multipart/form-data" },
-        url: "http://cpfx.78wa.com/public/index.php/upload/Uploads/upload",
+        url: "http://cpfx.78wa.com/public/index.php/goods/Apiyunzhi/upload",
         data: formData,
         params: {cowcms_userid: store.state.cowcms_userid}
     })

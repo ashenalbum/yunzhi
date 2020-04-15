@@ -3,7 +3,7 @@
         <van-nav-bar title="订单记录" @click-left="back" class="nav-bar">
             <template #left><van-icon name="arrow-left" color="#333333" class="c_33"/></template>
         </van-nav-bar>
-        <van-list v-model="loading" :finished="over" finished-text="没有更多了" @load="getData" class="list df df-c ai-c">
+        <van-list v-model="loading" :finished="over" finished-text="没有更多数据了" @load="getData" class="list df df-c ai-c">
             <div v-for="(item,index) in dataList" :key="index" class="item df df-r">
                 <img :src="item.goods_info.thumb" class="img" />
                 <div class="item-detail f1 df df-c just-c-bet">

@@ -17,6 +17,7 @@
                     <span class="pl-10 fs_26 lh-1">设为默认</span>
                 </div>
             </div>
+            <div v-if="dataList.length==0" class="txt-c mt-30 c_cc fs_30">暂无地址</div>
         </div>
         <!-- 表单 -->
         <van-popup v-model="showForm" round position="bottom">
