@@ -5,18 +5,25 @@
         </van-nav-bar>
         <div class="formbox mt-40 c_33 fs_30">
             <div>转账至：</div>
-            <van-cell class="mt-20 item" @click="showSelUser=true" is-link>
+            <!-- <van-cell class="mt-20 item" is-link>
                 <template #title>
                     <div v-if="user" class="df df-r ai-c">
                         <img :src="user.headpath" class="icon" />
                         <span class="c_33 fs_30">{{user.username + " " + user.mobile}}</span>
                     </div>
-                    <div v-else class="df df-r ai-c">
+                    <div class="df df-r ai-c">
                         <img src="~@/assets/mycenter/item1.png" class="icon" />
                         <span class="c_33 fs_30">请选择下级</span>
                     </div>
                 </template>
-            </van-cell>
+            </van-cell> -->
+            <van-field
+                v-model="formData.tousermobile"
+                left-icon="manager-o"
+                type="number"
+                placeholder="请输入转账用户手机号"
+                class="item"
+            />
             <div class="mt-60 df df-r ai-c">
                 <span>转账方式：</span>
                 <van-radio-group v-model="formData.type" direction="horizontal" icon-size="16" @change="changeType">
@@ -32,7 +39,7 @@
                 <span>可用{{formData.type==0?"云指币为 "+allMoney:"贡献值为 "+allPoint}}</span>
                 <span class="allmoney c_o" @click="inputAll">全部转账</span>
             </div>
-            <van-button @click="submit" type="into" size="small" block color="#6F6FFF" class="submitbtn">确认转账</van-button>
+            <van-button @click="submit" type="into" block color="#6F6FFF" class="submitbtn">确认转账</van-button>
         </div>
         <!-- 选择用户 -->
         <van-popup
@@ -49,6 +56,7 @@
                     <van-icon v-else name="circle" color="#999999" />
                     <div class="pl-20 f1 fs_28 c_99">{{item.username + "：" + item.mobile}}</div>
                 </div>
+                <div v-if="userList.length==0" class="mt-30 txt-c fs_30 c_99">暂无下级</div>
             </div>
         </van-popup>
     </div>
@@ -66,6 +74,7 @@ export default {
                 type: 0,
                 mobile: "",
                 num: "",
+                tousermobile: "",
             },
 
             user: null,
@@ -76,7 +85,7 @@ export default {
     },
     created(){
         this.getData();
-        this.getUser();
+        // this.getUser();
     },
     methods: {
         getData(){
@@ -85,8 +94,8 @@ export default {
                 params: {coin_type:"money"}
             }).then((data)=>{
                 if(data.err!=0){return}
-                this.allMoney = data.content.accounts.money.balance;
-                this.allPoint = data.content.accounts.point.balance;
+                this.allMoney = data.content.accounts?data.content.accounts.money.balance:0;
+                this.allPoint = data.content.accounts?data.content.accounts.point.balance:0;
             })
         },
         getUser(){
@@ -98,14 +107,16 @@ export default {
             })
         },
         submit(){
-            if(!this.user){Toast("请选择转账用户");return}
+            if(!this.formData.tousermobile){Toast("请输入转账用户手机号");return}
+            if(!/^1\d{10}$/.test(this.formData.tousermobile)){Toast("请输入正确的手机号");return}
             if(!this.formData.num){Toast("请输入转账金额");return}
             axios({
                 url: "/goods/Apiyunzhi/affirmTransfer",
                 params: {
-                    touserid: this.user.id,
+                    // touserid: this.user.id,
                     coin_type: this.formData.type==0?"money":"point",
                     num: this.formData.num,
+                    tousermobile: this.formData.tousermobile,
                 }
             }).then((data)=>{
                 if(data.err!=0){return;}

@@ -43,11 +43,11 @@ export default {
                 url: "/goods/Apiyunzhi/myCoin",
                 params: {coin_type:"point"}
             }).then((data)=>{
-                if(data.err!=0){return}
-                this.num = data.content.accounts.point.balance;
-                this.logList = data.content.list;
                 this.loading = false;
                 this.over = true;
+                if(data.err!=0){return}
+                this.num = data.content.accounts && data.content.accounts.point.balance;
+                this.logList = data.content.list;
             })
         },
         back(){this.$router.go(-1);}

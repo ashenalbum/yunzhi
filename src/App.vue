@@ -40,6 +40,7 @@ export default {
 .mt-50{margin-top:0.50rem;}
 .mt-60{margin-top:0.60rem;}
 .ml-20{margin-left:0.2rem;}
+.mb-20{margin-bottom:0.2rem;}
 .pl-10{padding-left:0.1rem;}
 .pl-20{padding-left:0.2rem;}
 .pl-40{padding-left:0.4rem;}
@@ -87,4 +88,6 @@ export default {
 .loginform .submit-btn .van-button__text{color:#6F6FFF; font-size:0.3rem;}
 
 .nav-bar{width:100%;}
+.details-box{color:#333; padding-bottom:0.3rem;}
+.details-box img{display:block; width:100%!important; height:auto;}
 </style>

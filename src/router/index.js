@@ -29,6 +29,11 @@ export default new Router({
         meta: {title: "登录"},
         component: (resolve) =>require(['@/page/login.vue'],resolve)
     },{
+        path: '/find_pwd',
+        name: 'find_pwd',
+        meta: {title: "找回密码"},
+        component: (resolve) =>require(['@/page/findPwd.vue'],resolve)
+    },{
         path: '/my_center',
         name: 'my_center',
         meta: {title: "个人中心"},

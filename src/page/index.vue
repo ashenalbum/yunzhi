@@ -10,7 +10,7 @@
         </van-swipe>
         <!-- <van-list v-model="loading" :finished="over" finished-text="没有更多数据了" @load="getList" class="list df df-c ai-c"> -->
         <div class="list df df-c ai-c">
-            <div v-for="(item,index) in dataList" :key="index" class="item df df-r shadow">
+            <div v-for="(item,index) in dataList" :key="index" @click="pay(item)" class="item df df-r shadow">
                 <img :src="item.thumb" class="img" />
                 <div class="item-detail f1 df df-c just-c-bet">
                     <div>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="df df-r just-c-end">
-                        <van-button @click="pay(item)" :disabled="item.status!=0" type="info" :color="item.status==2?'#C7C7C7':'#FFA800'" size="mini">{{item.overTime||"购买"}}</van-button>
+                        <van-button :disabled="item.status!=0" type="info" :color="item.status==2?'#C7C7C7':'#FFA800'" size="mini" class="buy-btn">{{item.overTime||"购买"}}</van-button>
                     </div>
                 </div>
             </div>
@@ -32,6 +32,7 @@
 </template>
 <script>
 import axios from "../utils/axios";
+import store from "../store/index";
 
 export default {
     name: "index",
@@ -42,6 +43,11 @@ export default {
         }
     },
     created(){
+        if(!store.state.cowcms_userid){
+            let str = "登录失效，请重新登录";
+            this.$router.replace("/login?msg="+str);
+            return;
+        }
         this.getList();
     },
     methods: {
@@ -58,6 +64,7 @@ export default {
             });
         },
         pay(item){
+            if(item.status!=0){return;}
             this.$router.push({path:"/order_detail", query:{id: item.id}});
         },
         toMyCenter(){
@@ -76,6 +83,7 @@ export default {
                 let time = ot - nt;
                 let d = parseInt(time/86400000);
                 let h = parseInt((time%86400000)/3600000);
+                h = h<10?"0"+h:h;
                 let m = parseInt((time%3600000)/60000);
                 m = m<10?"0"+m:m;
                 let s = parseInt((time%60000)/1000);
@@ -95,4 +103,5 @@ export default {
 .list .item:last-child{margin-bottom:0;}
 .list .item .img{width:2.6rem; height:1.68rem;}
 .list .item .item-detail{margin-left:0.16rem;}
+.list .item .buy-btn{padding-left:4px; padding-right:4px;}
 </style>

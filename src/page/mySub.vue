@@ -31,10 +31,10 @@ export default {
             axios({
                 url: "/goods/Apiyunzhi/myJunior"
             }).then((data)=>{
-                if(data.err!=0){return}
-                this.dataList = data.content;
                 this.loading = false;
                 this.over = true;
+                if(data.err!=0){return}
+                this.dataList = data.content;
             })
         },
         back(){this.$router.go(-1);}

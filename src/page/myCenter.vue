@@ -42,11 +42,15 @@
                     <span class="c_33 fs_30">订单记录</span>
                 </template>
             </van-cell>
+            <div class="btn-box w-60">
+                <van-button type="info" block class="outLogin" @click="outlogin">退出登录</van-button>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import axios from "../utils/axios";
+
 export default {
     data(){
         return {
@@ -65,6 +69,15 @@ export default {
                 this.info = data.content;
             })
         },
+        outlogin(){
+            this.$dialog.confirm({
+                message: '确定退出登录吗',
+            }).then(()=>{
+                window.localStorage.clear();
+                this.$store.commit("setUserId","");
+                this.$router.replace("/login");
+            }).catch(()=>{});
+        },
         toMyProperty(){this.$router.push("/my_property");},
         toMyFraction(){this.$router.push("/my_fraction");},
         toMyInfo(){this.$router.push("/my_info");},
@@ -76,6 +89,8 @@ export default {
 }
 </script>
 <style scoped>
+.w-60{width:6rem; margin-left:auto; margin-right:auto;}
+.btn-box{margin-top:1rem;}
 .cont{box-sizing:border-box; min-height:100vh; padding:1rem 0 0.3rem; background:#F8F8FA url(~@/assets/mycenter/topbg.png) no-repeat center 0; background-size:100% auto;}
 .topbox{position:relative; box-sizing:border-box; padding:0.15rem 0.45rem; width:7.1rem; border-radius:0.2rem; background:#ffffff;}
 .topbox .iconbox{padding:0.3rem 0; border-bottom:1px solid #DDDDDD;}

@@ -17,10 +17,10 @@
                 <van-icon name="arrow" color="#c7c7c7" size="0.22rem" class="pl-20"/>
             </div>
             <div class="sp df df-r">
-                <img :src="shop.thumb" class="img" />
+                <img :src="shop.thumb" class="img shadow" />
                 <div class="f1 txt pl-20 df df-c just-c-bet">
                     <div class="fs_30 c_33 two-hide">{{shop.title}}</div>
-                    <div class="df df-r ai-e fs_24 c_99">
+                    <div class="df df-r ai-e df-w-w fs_24 c_99">
                         <span class="fs_36 lh-1 c_red1">{{shop.price_f && shop.price_f.money}}</span>
                         <span class="pb-5 lh-1">云指币</span>
                         <span class="pl-10 fs_30">&</span>
@@ -29,6 +29,10 @@
                     </div>
                 </div>
             </div>
+            <div class="title">
+                <div class="title-txt fs_28 c_33">详情</div>
+            </div>
+            <div class="details-box mt-30" v-html="shop.introduce"></div>
         </div>
         <div @click="buy" class="submit-btn fs_34 c_ff df ai-c just-c-ct">立即购买</div>
         <van-popup
@@ -110,14 +114,16 @@ export default {
 </script>
 <style scoped>
 .pb-5{padding-bottom:0.05rem;}
-.main{width:6.4rem; margin:auto;}
+.main{width:6.9rem; margin:auto;}
 .location{padding:0.3rem 0; border-bottom:1px solid #EAEAEA;}
 .location .img{width:0.75rem; height:0.75rem;}
 .sp{padding:0.3rem 0;}
-.sp .img{width:1.9rem; height:1.9rem;}
+.sp .img{width:2.7rem; height:1.8rem;}
 .sp .txt{padding-top:0.05rem; padding-bottom:0.05rem;}
 .submit-btn{position:fixed; bottom:0; right:0; width:3.4rem; height:1rem; border-radius:0.4rem 0 0 0; background:#6F6FFF;}
 .selbox{padding:0.2rem 0.2rem 0.3rem;}
 .selbox .selitem{padding:0.1rem 0.2rem;}
 .addInfoBtn{width:4rem; margin:0.3rem auto 0.2rem;}
+.title{padding-left:0.16rem; border-bottom:1px solid #EAEAEA;}
+.title .title-txt{display:inline-block; line-height:1; padding:0.2rem 0.3rem; border-bottom:2px solid #F5CF68;}
 </style>

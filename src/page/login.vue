@@ -7,9 +7,10 @@
             <van-field v-model="formData.mobile" placeholder="请输入手机号" type="number" class="input" :border="false" />
             <van-field v-model="formData.password" placeholder="请输入密码" type="password" class="input" :border="false" />
             <van-button @click="checkForm" color="#ffffff" size="small" type="info" block class="c_style submit-btn">登 录</van-button>
-            <router-link to="/register">
-                <div class="txt-c mt-20 c_ff fs_30"><span>快速注册</span></div>
-            </router-link>
+            <div class="df df-r ai-c just-c-bet mt-60 mb-20">
+                <router-link to="/register"><span class="c_ff fs_30">快速注册</span></router-link>
+                <router-link to="/find_pwd"><span class="c_ff fs_30">找回密码</span></router-link>
+            </div>
         </div>
     </div>
 </template>
@@ -40,11 +41,14 @@ export default {
         onSubmit(){
             axios({
                 method: "post",
-                url: "http://cpfx.78wa.com/public/index.php/goods/Apiyunzhi/login",
+                url: window.baseUrl + "/public/index.php/goods/Apiyunzhi/login",
                 data: this.formData,
             }).then((res)=>{
                 let data = res.data;
-                if(data.err!=0){return;}
+                if(data.err!=0){
+                    Toast(data.content);
+                    return;
+                }
                 Toast("登录成功");
                 if(data.cowcms_userid){window.localStorage.setItem("cowcms_userid",data.cowcms_userid);}
                 this.$store.commit("setUserId",data.cowcms_userid);

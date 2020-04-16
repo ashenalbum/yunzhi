@@ -1,16 +1,17 @@
 <template>
     <div class="cont df df-c ai-c">
-        <van-nav-bar title="个人资料" @click-right="save" @click-left="back" class="nav-bar">
+         <!-- @click-right="save" -->
+        <van-nav-bar title="个人资料" @click-left="back" class="nav-bar">
             <template #left><van-icon name="arrow-left" color="#333333" class="c_33"/></template>
-            <template #right><span class="c_33">保存</span></template>
+            <!-- <template #right><span class="c_33">保存</span></template> -->
         </van-nav-bar>
         <!-- <van-uploader :after-read="afterRead" :preview-image="false"> -->
-            <img :src="formData.headpath" class="icon shadow" />
+        <img :src="formData.headpath" class="icon shadow" />
         <!-- </van-uploader> -->
         <div class="formbox">
-            <van-field v-model="formData.username" label="用户名" placeholder="请输入用户名" input-align="right" :borde="false" class="input" />
-            <van-field v-model="formData.mobile" label="手机号" type="number" placeholder="请输入手机号" input-align="right" :borde="false" class="input" />
-            <van-field v-model="formData.recommend_mobile" label="推荐人手机号" type="number" placeholder="请输入推荐人手机号" input-align="right" :borde="false" class="input" />
+            <van-field readonly v-model="formData.username" label="用户名" placeholder="" input-align="right" :borde="false" class="input" />
+            <van-field readonly v-model="formData.mobile" label="手机号" type="number" placeholder="" input-align="right" :borde="false" class="input" />
+            <van-field readonly v-model="formData.recommend_mobile" label="推荐人手机号" type="number" placeholder="" input-align="right" :borde="false" class="input" />
         </div>
     </div>
 </template>
