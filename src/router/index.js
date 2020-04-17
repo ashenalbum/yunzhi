@@ -51,12 +51,12 @@ export default new Router({
     },{
         path: '/my_property',
         name: 'my_property',
-        meta: {title: "我的指币"},
+        meta: {title: "我的贡献值"},
         component: (resolve) =>require(['@/page/myProperty.vue'],resolve)
     },{
         path: '/my_fraction',
         name: 'my_fraction',
-        meta: {title: "我的积分"},
+        meta: {title: "我的云指币"},
         component: (resolve) =>require(['@/page/myFraction.vue'],resolve)
     },{
         path: '/my_sub',

@@ -4,20 +4,20 @@
             <template #left><van-icon name="arrow-left" color="#333333" class="c_33"/></template>
         </van-nav-bar>
         <div class="main df df-c ai-c">
-            <div class="fs_24 c_99">购买本产品需支付云指币</div>
-            <div class="mt-40 df df-r ai-e c_33 b">
-                <span class="fs_80 lh-1">{{shopPrice.money}}</span>
-                <span class="fs_24 lh-1 pl-10 pb-10">云指币</span>
-            </div>
-            <div class="mt-40 fs_30 c_red1">*本账户内可用云指币余额为 {{userPrice.money&&userPrice.money.balance}}</div>
-        </div>
-        <div class="main df df-c ai-c">
             <div class="fs_24 c_99">购买本产品需支付贡献值</div>
             <div class="mt-40 df df-r ai-e c_33 b">
-                <span class="fs_80 lh-1">{{shopPrice.point}}</span>
+                <span class="fs_80 lh-1">{{shopPrice.money}}</span>
                 <span class="fs_24 lh-1 pl-10 pb-10">贡献值</span>
             </div>
-            <div class="mt-40 fs_30 c_red1">*本账户内可用云贡献值余额为 {{userPrice.point&&userPrice.point.balance}}</div>
+            <div class="mt-40 fs_30 c_red1">*本账户内可用贡献值余额为 {{userPrice.money&&userPrice.money.balance}}</div>
+        </div>
+        <div class="main df df-c ai-c">
+            <div class="fs_24 c_99">购买本产品需支付云指币</div>
+            <div class="mt-40 df df-r ai-e c_33 b">
+                <span class="fs_80 lh-1">{{shopPrice.point}}</span>
+                <span class="fs_24 lh-1 pl-10 pb-10">云指币</span>
+            </div>
+            <div class="mt-40 fs_30 c_red1">*本账户内可用云云指币余额为 {{userPrice.point&&userPrice.point.balance}}</div>
         </div>
         <div class="paybtn mt-60">
             <van-button type="info" color="#6F6FFF" block @click="pay">确认支付</van-button>

@@ -27,8 +27,8 @@
             <div class="mt-60 df df-r ai-c">
                 <span>转账方式：</span>
                 <van-radio-group v-model="formData.type" direction="horizontal" icon-size="16" @change="changeType">
-                    <van-radio :name="0">云指币</van-radio>
-                    <van-radio :name="1">贡献值</van-radio>
+                    <van-radio :name="0">贡献值</van-radio>
+                    <van-radio :name="1">云指币</van-radio>
                 </van-radio-group>
             </div>
             <div class="mt-60">
@@ -36,7 +36,7 @@
                 <input v-model="formData.num" class="mt-10 num-input" type="number" placeholder="请输入金额" />
             </div>
             <div class="mt-30 fs_26">
-                <span>可用{{formData.type==0?"云指币为 "+allMoney:"贡献值为 "+allPoint}}</span>
+                <span>可用{{formData.type==0?"贡献值为 "+allMoney:"云指币为 "+allPoint}}</span>
                 <span class="allmoney c_o" @click="inputAll">全部转账</span>
             </div>
             <van-button @click="submit" type="into" block color="#6F6FFF" class="submitbtn">确认转账</van-button>

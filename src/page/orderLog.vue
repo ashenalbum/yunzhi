@@ -16,9 +16,9 @@
                     </div>
                     <span class="c_ashen fs_26">
                         <span class="fs_40 c_red1">{{item.payinfo.money}}</span>
-                        <span>云指币 & </span>
+                        <span>贡献值 & </span>
                         <span class="fs_40 c_red1">{{item.payinfo.point}}</span>
-                        <span>贡献值</span>
+                        <span>云指币</span>
                     </span>
                 </div>
             </div>

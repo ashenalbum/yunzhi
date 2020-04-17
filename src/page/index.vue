@@ -1,11 +1,13 @@
 <template>
     <div class="cont">
         <van-nav-bar title="首页" @click-right="toMyCenter" >
-            <template #right><van-icon name="user-o" color="#333333" size="20px" /></template>
+            <template #right><van-icon name="manager" color="#6F6FFF" size="20px" /></template>
         </van-nav-bar>
         <van-swipe :autoplay="3000" class="swipe">
             <van-swipe-item v-for="(image, index) in swipeList" :key="index">
-                <img :src="image" class="img" />
+                <a class="a" :href="videoUrl" target="_blank">
+                    <img :src="image" class="img" />
+                </a>
             </van-swipe-item>
         </van-swipe>
         <!-- <van-list v-model="loading" :finished="over" finished-text="没有更多数据了" @load="getList" class="list df df-c ai-c"> -->
@@ -16,9 +18,9 @@
                     <div>
                         <div class="fs_30 c_33 one-hide">{{item.title}}</div>
                         <div class="mt-20 c_ashen fs_26 lh-1 df df-r ai-c">
-                            <span><span class="fs_34">{{item.price_f.money}}</span>云指币</span>
+                            <span><span class="fs_34">{{item.price_f.money}}</span>贡献值</span>
                             <span class="pl-10 fs_30">&</span>
-                            <span class="pl-10"><span class="fs_34">{{item.price_f.point}}</span>贡献值</span>
+                            <span class="pl-10"><span class="fs_34">{{item.price_f.point}}</span>云指币</span>
                         </div>
                     </div>
                     <div class="df df-r just-c-end">
@@ -32,7 +34,6 @@
 </template>
 <script>
 import axios from "../utils/axios";
-import store from "../store/index";
 
 export default {
     name: "index",
@@ -40,14 +41,10 @@ export default {
         return {
             swipeList: [],
             dataList: [],
+            videoUrl: "",
         }
     },
     created(){
-        if(!store.state.cowcms_userid){
-            let str = "登录失效，请重新登录";
-            this.$router.replace("/login?msg="+str);
-            return;
-        }
         this.getList();
     },
     methods: {
@@ -60,6 +57,7 @@ export default {
                 if(data.err!=0){return}
                 this.swipeList = data.data.advert;
                 this.dataList = data.data.shop;
+                this.videoUrl = data.data.video;
                 this.overTime();
             });
         },
@@ -97,6 +95,7 @@ export default {
 </script>
 <style scoped>
 .swipe .van-swipe-item{width:100%; height:3.6rem;}
+.swipe .van-swipe-item .a{display:block; width:100%; height:100%;}
 .swipe .van-swipe-item .img{width:100%; height:100%;}
 .list{margin:0.4rem 0 0;}
 .list .item{box-sizing:border-box; width:6.8rem; padding:0.3rem 0.2rem; margin-bottom:0.24rem; border-radius:0.16rem; background:#ffffff;}

@@ -22,10 +22,10 @@
                     <div class="fs_30 c_33 two-hide">{{shop.title}}</div>
                     <div class="df df-r ai-e df-w-w fs_24 c_99">
                         <span class="fs_36 lh-1 c_red1">{{shop.price_f && shop.price_f.money}}</span>
-                        <span class="pb-5 lh-1">云指币</span>
+                        <span class="pb-5 lh-1">贡献值</span>
                         <span class="pl-10 fs_30">&</span>
                         <span class="pl-10 fs_36 lh-1 c_red1">{{shop.price_f && shop.price_f.point}}</span>
-                        <span class="pb-5 lh-1">贡献值</span>
+                        <span class="pb-5 lh-1">云指币</span>
                     </div>
                 </div>
             </div>

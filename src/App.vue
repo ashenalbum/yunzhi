@@ -88,6 +88,8 @@ export default {
 .loginform .submit-btn .van-button__text{color:#6F6FFF; font-size:0.3rem;}
 
 .nav-bar{width:100%;}
+.style-nav-bar .van-nav-bar__title{color:#ffffff;}
+
 .details-box{color:#333; padding-bottom:0.3rem;}
 .details-box img{display:block; width:100%!important; height:auto;}
 </style>

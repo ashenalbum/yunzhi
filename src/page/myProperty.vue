@@ -1,16 +1,16 @@
 <template>
     <div class="cont df df-c ai-c">
-        <van-nav-bar title="我的云指币" @click-left="back" class="nav-bar">
+        <van-nav-bar title="我的贡献值" @click-left="back" class="nav-bar">
             <template #left><van-icon name="arrow-left" color="#333333" class="c_33"/></template>
         </van-nav-bar>
         <div class="top df df-c mt-20 c_ff">
-            <div class="fs_30">现有云指币</div>
+            <div class="fs_30">现有贡献值</div>
             <div class="f1 df ai-c just-c-ct fs_124">{{num}}</div>
         </div>
         <div class="list mt-40">
             <div class="title df df-r ai-c">
                 <van-icon name="bars" size="0.44rem" color="#FFAB04" />
-                <span class="fs_30 c_33">云指币明细</span>
+                <span class="fs_30 c_33">贡献值明细</span>
             </div>
             <van-list v-model="loading" :finished="over" finished-text="没有更多数据了" @load="getData" class="mt-20">
                 <div v-for="(item,index) in logList" :key="index" class="item df df-r ai-c">
@@ -18,7 +18,7 @@
                         <div class="fs_30">{{item.operation_type}}</div>
                         <div class="mt-10 c_ashen fs_20">{{item.addtime}}</div>
                     </div>
-                    <span class="num c_red1 fs_28">{{item.accounts&&item.accounts.money}}云指币</span>
+                    <span class="num c_red1 fs_28">{{item.accounts&&item.accounts.money}}贡献值</span>
                 </div>
             </van-list>
         </div>
