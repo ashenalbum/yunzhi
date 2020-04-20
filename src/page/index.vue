@@ -5,9 +5,7 @@
         </van-nav-bar>
         <van-swipe :autoplay="3000" class="swipe">
             <van-swipe-item v-for="(image, index) in swipeList" :key="index">
-                <a class="a" :href="videoUrl" target="_blank">
-                    <img :src="image" class="img" />
-                </a>
+                <img :src="image" class="img" @click="toVideo" />
             </van-swipe-item>
         </van-swipe>
         <!-- <van-list v-model="loading" :finished="over" finished-text="没有更多数据了" @load="getList" class="list df df-c ai-c"> -->
@@ -71,6 +69,9 @@ export default {
         overTime(){
             this.cumputeTime();
             setInterval(this.cumputeTime,1000);
+        },
+        toVideo(){
+            this.$router.push({path:"/video", query:{src: this.videoUrl}});
         },
         cumputeTime(){
             for(let i in this.dataList){

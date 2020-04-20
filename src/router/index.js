@@ -83,5 +83,10 @@ export default new Router({
         name: 'order_pay',
         meta: {title: "支付订单"},
         component: (resolve) =>require(['@/page/orderPay.vue'],resolve)
+    },{
+        path: '/video',
+        name: 'video',
+        meta: {title: "视频详情"},
+        component: (resolve) =>require(['@/page/video.vue'],resolve)
     }]
 })

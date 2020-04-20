@@ -54,7 +54,8 @@ export default {
                 this.$store.commit("setUserId",data.cowcms_userid);
                 this.$router.replace("/index");
             });
-        }
+        },
+        // showLocation(){Toast(window.location.href)},
     }
 }
 </script>
