@@ -34,7 +34,7 @@
             </div>
             <div class="details-box mt-30" v-html="shop.introduce"></div>
         </div>
-        <div @click="buy" class="submit-btn fs_34 c_ff df ai-c just-c-ct">立即购买</div>
+        <div @click="buy" class="submit-btn fs_34 c_ff df ai-c just-c-ct">{{btnTxt}}</div>
         <van-popup
             v-model="showSelInfo"
             position="bottom"
@@ -74,6 +74,8 @@ export default {
             showSelInfo: false,
             infoList: [],
             selInfoId: 0,
+
+            btnTxt: "立即购买",
         }
     },
     created(){
@@ -89,6 +91,7 @@ export default {
                 if(data.err!=0){return}
                 this.info = data.content.addr;
                 this.shop = data.content.shopInfo;
+                if(this.shop && this.shop.inventory<=0){ this.btnTxt = data.text; }
             });
             axios({
                 url: "/goods/Apiyunzhi/myAddr",
@@ -99,6 +102,7 @@ export default {
             })
         },
         buy(){
+            if(this.shop && this.shop.inventory<=0){Toast(this.btnTxt);return}
             if(!this.info || !this.info.id){Toast("请先添加收货地址");return}
             this.$router.push({path: "/order_pay", query:{id:this.id, addr_id:this.info.id}});
         },

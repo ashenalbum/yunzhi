@@ -2,6 +2,7 @@
     <div class="cont">
         <van-nav-bar title="我的下级" @click-left="back" class="nav-bar">
             <template #left><van-icon name="arrow-left" color="#333333" class="c_33"/></template>
+            <template #right><span class="c_99">{{pnum}}</span></template>
         </van-nav-bar>
         <van-list v-model="loading" :finished="over" finished-text="没有更多数据了" @load="getData" class="list mt-20">
             <div v-for="(item,index) in dataList" :key="index" class="item df df-r ai-c just-c-bet">
@@ -23,6 +24,7 @@ export default {
             loading: false,
             over: false,
             dataList: [],
+            pnum: ""
         }
     },
     created(){},
@@ -35,6 +37,7 @@ export default {
                 this.over = true;
                 if(data.err!=0){return}
                 this.dataList = data.content;
+                this.pnum = data.count + "人";
             })
         },
         back(){this.$router.go(-1);}
